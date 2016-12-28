@@ -1,8 +1,11 @@
 package main
 
-import "net/http"
+import (
+	"net/http"
+	"os/exec"
 
-import "gopkg.in/gin-gonic/gin.v1"
+	"gopkg.in/gin-gonic/gin.v1"
+)
 
 func main() {
 	router := gin.Default()
@@ -13,7 +16,13 @@ func main() {
 }
 
 func hi(c *gin.Context) {
+	tmux_path, _ := c.Get("bin")
+	if tmux_path == nil {
+		tmux_path, _ = exec.LookPath("tmux")
+	}
+
 	c.HTML(http.StatusOK, "hi.html", gin.H{
-		"title": "Main website",
+		"title":     "Main website",
+		"tmux_path": tmux_path,
 	})
 }
