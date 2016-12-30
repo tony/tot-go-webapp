@@ -35,3 +35,11 @@ Install CSS dependencies (from project dir):
 ```bash
 $ bower install
 ```
+
+## Build n' run
+
+```bash
+$ make run
+```
+
+Then go to http://localhost:8080
