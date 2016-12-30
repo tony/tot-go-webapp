@@ -20,15 +20,19 @@ func main() {
 	router.Run("localhost:8080")
 }
 
+func get_sessions(tmuxbin string) []string {
+	sessions_cmd := exec.Command(tmuxbin, "list-sessions")
+	out, _ := sessions_cmd.CombinedOutput()
+	return strings.Split(strings.TrimSpace(string(out)), "\n")
+}
+
 func index(c *gin.Context) {
 	tmux_path, _ := c.Get("bin")
 	if tmux_path == nil {
 		tmux_path, _ = exec.LookPath("tmux")
 	}
 
-	sessions_cmd := exec.Command("tmux", "list-sessions")
-	out, _ := sessions_cmd.CombinedOutput()
-	sessions := strings.Split(strings.TrimSpace(string(out)), "\n")
+	sessions := get_sessions(tmux_path.(string))
 
 	c.HTML(http.StatusOK, "index.html", gin.H{
 		"title":     "tmux control panel",
