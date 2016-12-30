@@ -45,15 +45,16 @@ func get_clients(tmuxbin string) []string {
 }
 
 func index(c *gin.Context) {
-	tmux_path, _ := c.Get("bin")
-	if tmux_path == nil {
+	tmux_path := c.Query("tmux_path")
+
+	if tmux_path == "" {
 		tmux_path, _ = exec.LookPath("tmux")
 	}
 
-	sessions := get_sessions(tmux_path.(string))
-	windows := get_windows(tmux_path.(string))
-	panes := get_panes(tmux_path.(string))
-	clients := get_clients(tmux_path.(string))
+	sessions := get_sessions(tmux_path)
+	windows := get_windows(tmux_path)
+	panes := get_panes(tmux_path)
+	clients := get_clients(tmux_path)
 
 	c.HTML(http.StatusOK, "index.html", gin.H{
 		"title":     "tmux control panel",
