@@ -2,7 +2,7 @@
 
 Same golang web application for [*The Tao of tmux and Terminal Tricks*](https://leanpub.com/the-tao-of-tmux/read).
 
-# Features
+## Features
 
 * [`Makefile`](https://en.wikipedia.org/wiki/Makefile) with [file watching functionality from the
   book](https://leanpub.com/the-tao-of-tmux/read#leanpub-auto-file-watching)
@@ -43,3 +43,7 @@ $ make run
 ```
 
 Then go to http://localhost:8080
+
+## License
+
+MIT.
