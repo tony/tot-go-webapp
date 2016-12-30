@@ -1,9 +1,15 @@
 <!-- ./templates/hi.html -->
-<html><head> <title>{{.title}}</title> </head>
+<html>
+<head>
+  <title>{{.title}}</title> 
+  <link rel="stylesheet" href="/static/style.css" type="text/css">
+  <link rel="stylesheet" href="/static/bower/bootstrap/dist/css/bootstrap.css" type="text/css">
+</head>
   <body>
-    <h1>tmux control panel</h1>
-    <link rel="stylesheet" href="/static/style.css" type="text/css">
-    <link rel="stylesheet" href="/static/bower/bootstrap/dist/css/bootstrap.css" type="text/css">
+    <div class="container">
+    <div class="header clearfix">
+      <h3 class="text-muted">tmux control panel</h3>
+    </div>
     <form type="GET" action="./">
       {{if .tmux_path }}
       <input name="tmux_path" value="{{.tmux_path}}" />
@@ -20,5 +26,6 @@
       {{end}}
       </p>
     </form>
+    </div>
   </body>
 </html>
