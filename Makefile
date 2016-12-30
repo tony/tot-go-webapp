@@ -1,4 +1,4 @@
-WATCH_FILES= find . -type f -not -path '*/\.*' | grep -i '.*[.]go$$' 2> /dev/null
+WATCH_FILES= find . -type f -not -path '*/\.*' | grep -i '.*[.]go\|html$$' 2> /dev/null
 
 
 test:
