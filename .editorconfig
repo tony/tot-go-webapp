@@ -1,0 +1,50 @@
+;.editorconfig
+[**.js,**.jsx]
+bin=node
+indent_style = space
+indent_size = 2
+jslint_happy = 1
+keep_array_indentation = 1
+keep_function_indentation = 1
+space_before_conditional = 1
+break_chained_methods = 0
+chain_extra_indentation = 1
+indent_style = space
+preserve_newlines = 1
+max_preserve_newlines = 2
+charset = utf8
+
+
+[**.json]
+indent_style = space
+indent_size = 2
+
+[**.css,**.scss,**.less]
+indent_style = space
+indent_size = 2
+
+[**.html, **.erb, **.hbs]
+; Using special comments
+; And such comments or apply only in global configuration
+; So it's best to avoid them
+;vim:max_char=78:brace_style=expand
+indent_style = space
+indent_size = 2
+
+[**.py]
+indent_style = space
+indent_size = 4
+
+[**.php]
+indent_style = tab
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[**.md]
+trim_trailing_whitespace = false
+
+; Golang
+[*.go]
+indent_style = tab
+indent_size = 4
