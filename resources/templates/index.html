@@ -55,6 +55,19 @@
       {{end}}
       </p>
 
+      <h3>clients</h3>
+      <p>
+      {{if .clients}}
+      <ul>
+      {{range .clients}}
+      <li>
+      {{.}}
+      </li>
+      {{end}}
+      </ul>
+      {{end}}
+      </p>
+
     </form>
     </div>
   </body>
