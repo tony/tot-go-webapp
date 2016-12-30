@@ -1,0 +1,22 @@
+{
+  "name": "tot-go-webapp",
+  "homepage": "https://github.com/tony/tot-go-webapp",
+  "authors": [
+    "Tony Narlock <tony@git-pull.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "resources/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.5"
+  }
+}
