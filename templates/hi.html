@@ -4,7 +4,9 @@
     <h1> Hi {{.Name}} </h1>
 
     <form type="GET" action="./">
+      {{if .tmux_path }}
       <input name="tmux_path" value="{{.tmux_path}}" />
+      {{end}}
     </form>
   </body>
 </html>
