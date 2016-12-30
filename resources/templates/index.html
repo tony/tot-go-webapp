@@ -8,7 +8,15 @@
       <input name="tmux_path" value="{{.tmux_path}}" />
       {{end}}
       <p>
-      {{.sessions}}
+      {{if .sessions}}
+      <ul>
+      {{range .sessions}}
+      <li>
+      {{.}}
+      </li>
+      {{end}}
+      </ul>
+      {{end}}
       </p>
     </form>
   </body>
