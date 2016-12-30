@@ -8,7 +8,7 @@
   <body>
     <div class="container">
       <div class="header clearfix">
-        <h3 class="text-muted">tmux control panel</h3>
+        <h5 class="text-muted">tmux control panel</h5>
       </div>
       <form type="GET" action="./">
         {{if .tmux_path }}
@@ -16,7 +16,7 @@
         <input name="tmux_path" value="{{.tmux_path}}" id="tmux_path" />
         {{end}}
       </form>
-      <h3>sessions</h3>
+      <h5>sessions</h5>
       <p>
       {{if .sessions}}
       <ul>
@@ -29,7 +29,7 @@
       {{end}}
       </p>
 
-      <h3>windows</h3>
+      <h5>windows</h5>
       <p>
       {{if .windows}}
       <ul>
@@ -42,7 +42,7 @@
       {{end}}
       </p>
 
-      <h3>panes</h3>
+      <h5>panes</h5>
       <p>
       {{if .panes}}
       <ul>
@@ -55,7 +55,7 @@
       {{end}}
       </p>
 
-      <h3>clients</h3>
+      <h5>clients</h5>
       <p>
       {{if .clients}}
       <ul>
