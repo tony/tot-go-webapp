@@ -12,12 +12,28 @@
     </div>
     <form type="GET" action="./">
       {{if .tmux_path }}
-      <input name="tmux_path" value="{{.tmux_path}}" />
+      <label for="tmux_path">tmux path</label>
+      <input name="tmux_path" value="{{.tmux_path}}" id="tmux_path" />
       {{end}}
+
+      <h3>sessions</h3>
       <p>
       {{if .sessions}}
       <ul>
       {{range .sessions}}
+      <li>
+      {{.}}
+      </li>
+      {{end}}
+      </ul>
+      {{end}}
+      </p>
+
+      <h3>windows</h3>
+      <p>
+      {{if .windows}}
+      <ul>
+      {{range .windows}}
       <li>
       {{.}}
       </li>
