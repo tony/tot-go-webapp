@@ -24,4 +24,4 @@ _testmain.go
 *.prof
 
 # bower
-resources/bower/
+resources/static/bower/
