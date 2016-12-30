@@ -11,8 +11,10 @@ import (
 func main() {
 	router := gin.Default()
 	router.LoadHTMLGlob("templates/*")
+
 	router.GET("/", hi)
 	router.GET("/index", hi)
+
 	router.Run("localhost:8080")
 }
 
