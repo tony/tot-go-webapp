@@ -28,7 +28,7 @@ func index(c *gin.Context) {
 
 	sessions_cmd := exec.Command("tmux", "list-sessions")
 	out, _ := sessions_cmd.CombinedOutput()
-	sessions := strings.TrimSpace(string(out))
+	sessions := strings.Split(strings.TrimSpace(string(out)), "\n")
 
 	c.HTML(http.StatusOK, "index.html", gin.H{
 		"title":     "tmux control panel",
