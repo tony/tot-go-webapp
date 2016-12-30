@@ -17,8 +17,21 @@ Same golang web application for [*The Tao of tmux and Terminal Tricks*](https://
 * Load project with [tmuxp](https://tmuxp.git-pull.com) via `$ tmuxp load .` in
   the project directory. See [`.tmuxp.yaml`](.tmuxp.yaml)
 
+## Dependencies
+
+- [`entr(1)`](http://entrproject.org/).
+- [bower](https://bower.io/#install-bower), installed via [npm](https://nodejs.org/en/).
+
 ## Installation
 
+Grab project and go dependencies:
+
 ```bash
-go get -u github.com/tony/tot-go-webapp
+$ go get -u github.com/tony/tot-go-webapp
+```
+
+Install CSS dependencies (from project dir):
+
+```bash
+$ bower install
 ```
