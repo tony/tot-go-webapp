@@ -29,7 +29,7 @@ func hi(c *gin.Context) {
 	sessions := strings.TrimSpace(string(out))
 
 	c.HTML(http.StatusOK, "hi.html", gin.H{
-		"title":     "Main website",
+		"title":     "tmux control panel",
 		"tmux_path": tmux_path,
 		"sessions":  sessions,
 	})
