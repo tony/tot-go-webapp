@@ -14,13 +14,13 @@ func main() {
 	router.LoadHTMLGlob("resources/templates/*")
 	router.Static("/static", "resources/static")
 
-	router.GET("/", hi)
-	router.GET("/index", hi)
+	router.GET("/", index)
+	router.GET("/index", index)
 
 	router.Run("localhost:8080")
 }
 
-func hi(c *gin.Context) {
+func index(c *gin.Context) {
 	tmux_path, _ := c.Get("bin")
 	if tmux_path == nil {
 		tmux_path, _ = exec.LookPath("tmux")
@@ -30,7 +30,7 @@ func hi(c *gin.Context) {
 	out, _ := sessions_cmd.CombinedOutput()
 	sessions := strings.TrimSpace(string(out))
 
-	c.HTML(http.StatusOK, "hi.html", gin.H{
+	c.HTML(http.StatusOK, "index.html", gin.H{
 		"title":     "tmux control panel",
 		"tmux_path": tmux_path,
 		"sessions":  sessions,
