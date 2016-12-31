@@ -5,11 +5,19 @@
   <link rel="stylesheet" href="/static/bower/bootstrap/dist/css/bootstrap.css" type="text/css">
   <link rel="stylesheet" href="/static/style.css" type="text/css">
   <script type="text/javascript" src="/static/bower/jquery/dist/jquery.js"></script>
+  <script type="text/javascript">
+  setInterval(function() {
+    $('#tmux_content').load('/tmux_partial')
+  }, 1000)
+  </script>
 </head>
   <body>
     <div class="container">
       <div class="header clearfix">
         <h5 class="text-muted">tmux control panel</h5>
+      </div>
+      <div class="alert alert-info" role="alert">
+        <strong>Keep this window open!</strong> Play with tmux, switch between windows and panes, this content will update!
       </div>
       <form type="GET" action="./">
         {{if .tmux_path }}
@@ -17,7 +25,10 @@
         <input name="tmux_path" value="{{.tmux_path}}" id="tmux_path" />
         {{end}}
       </form>
+     
+      <div id='tmux_content'>
       {{template "tmux_content" .}}
+      </div>
     </div>
   </body>
 </html>
