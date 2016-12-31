@@ -16,9 +16,10 @@
         <input name="tmux_path" value="{{.tmux_path}}" id="tmux_path" />
         {{end}}
       </form>
+
+      {{if .sessions}}
       <h5>sessions</h5>
       <p>
-      {{if .sessions}}
       <ul>
       {{range .sessions}}
       <li>
@@ -26,12 +27,12 @@
       </li>
       {{end}}
       </ul>
-      {{end}}
       </p>
+      {{end}}
 
+      {{if .windows }}
       <h5>windows</h5>
       <p>
-      {{if .windows}}
       <ul>
       {{range .windows}}
       <li>
@@ -39,12 +40,12 @@
       </li>
       {{end}}
       </ul>
-      {{end}}
       </p>
+      {{end}}
 
+      {{if .panes}}
       <h5>panes</h5>
       <p>
-      {{if .panes}}
       <ul>
       {{range .panes}}
       <li>
@@ -52,12 +53,12 @@
       </li>
       {{end}}
       </ul>
-      {{end}}
       </p>
+      {{end}}
 
+      {{if .clients}}
       <h5>clients</h5>
       <p>
-      {{if .clients}}
       <ul>
       {{range .clients}}
       <li>
@@ -65,8 +66,8 @@
       </li>
       {{end}}
       </ul>
-      {{end}}
       </p>
+      {{end}}
     </div>
   </body>
 </html>
