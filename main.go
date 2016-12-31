@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"os/exec"
 	"strings"
@@ -20,28 +21,30 @@ func main() {
 	router.Run("localhost:8080")
 }
 
+func get_list(tmuxbin string, cmd string) []string {
+	_cmd := exec.Command(tmuxbin, cmd)
+	out, err := _cmd.Output()
+	if err == nil {
+		return strings.Split(strings.TrimSpace(string(out)), "\n")
+	} else {
+		return []string{}
+	}
+}
+
 func get_sessions(tmuxbin string) []string {
-	_cmd := exec.Command(tmuxbin, "list-sessions")
-	out, _ := _cmd.CombinedOutput()
-	return strings.Split(strings.TrimSpace(string(out)), "\n")
+	return get_list(tmuxbin, "list-sessions")
 }
 
 func get_windows(tmuxbin string) []string {
-	_cmd := exec.Command(tmuxbin, "list-windows")
-	out, _ := _cmd.CombinedOutput()
-	return strings.Split(strings.TrimSpace(string(out)), "\n")
+	return get_list(tmuxbin, "list-windows")
 }
 
 func get_panes(tmuxbin string) []string {
-	_cmd := exec.Command(tmuxbin, "list-panes")
-	out, _ := _cmd.CombinedOutput()
-	return strings.Split(strings.TrimSpace(string(out)), "\n")
+	return get_list(tmuxbin, "list-panes")
 }
 
 func get_clients(tmuxbin string) []string {
-	_cmd := exec.Command(tmuxbin, "list-clients")
-	out, _ := _cmd.CombinedOutput()
-	return strings.Split(strings.TrimSpace(string(out)), "\n")
+	return get_list(tmuxbin, "list-clients")
 }
 
 func index(c *gin.Context) {
@@ -53,6 +56,8 @@ func index(c *gin.Context) {
 
 	sessions := get_sessions(tmux_path)
 	windows := get_windows(tmux_path)
+	fmt.Printf("windows: %v", windows)
+	println(len(windows))
 	panes := get_panes(tmux_path)
 	clients := get_clients(tmux_path)
 
