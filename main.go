@@ -20,8 +20,8 @@ func main() {
 	router.Run("localhost:8080")
 }
 
-func getList(tmuxbin string, cmd string) []string {
-	_cmd := exec.Command(tmuxbin, cmd)
+func getList(tmuxPath string, cmd string) []string {
+	_cmd := exec.Command(tmuxPath, cmd)
 	out, err := _cmd.Output()
 	if err == nil {
 		return strings.Split(strings.TrimSpace(string(out)), "\n")
@@ -29,20 +29,38 @@ func getList(tmuxbin string, cmd string) []string {
 	return []string{}
 }
 
-func getSessions(tmuxbin string) []string {
-	return getList(tmuxbin, "list-sessions")
+func getSessions(tmuxPath string) []string {
+	return getList(tmuxPath, "list-sessions")
 }
 
-func getWindows(tmuxbin string) []string {
-	return getList(tmuxbin, "list-windows")
+func getWindows(tmuxPath string) []string {
+	return getList(tmuxPath, "list-windows")
 }
 
-func getPanes(tmuxbin string) []string {
-	return getList(tmuxbin, "list-panes")
+func getPanes(tmuxPath string) []string {
+	return getList(tmuxPath, "list-panes")
 }
 
-func getClients(tmuxbin string) []string {
-	return getList(tmuxbin, "list-clients")
+func getClients(tmuxPath string) []string {
+	return getList(tmuxPath, "list-clients")
+}
+
+type tmuxData struct {
+	sessions []string
+	windows  []string
+	panes    []string
+	clients  []string
+}
+
+func getTmuxData(tmuxPath string) tmuxData {
+
+	return tmuxData{
+		getSessions(tmuxPath),
+		getWindows(tmuxPath),
+		getPanes(tmuxPath),
+		getClients(tmuxPath),
+	}
+
 }
 
 func index(c *gin.Context) {
@@ -52,17 +70,14 @@ func index(c *gin.Context) {
 		tmuxPath, _ = exec.LookPath("tmux")
 	}
 
-	sessions := getSessions(tmuxPath)
-	windows := getWindows(tmuxPath)
-	panes := getPanes(tmuxPath)
-	clients := getClients(tmuxPath)
+	tmux_data := getTmuxData(tmuxPath)
 
 	c.HTML(http.StatusOK, "index.html", gin.H{
 		"title":     "tmux control panel",
 		"tmux_path": tmuxPath,
-		"sessions":  sessions,
-		"windows":   windows,
-		"panes":     panes,
-		"clients":   clients,
+		"sessions":  tmux_data.sessions,
+		"windows":   tmux_data.windows,
+		"panes":     tmux_data.panes,
+		"clients":   tmux_data.clients,
 	})
 }
