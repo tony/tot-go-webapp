@@ -21,7 +21,7 @@ func main() {
 	router.Run("localhost:8080")
 }
 
-func get_list(tmuxbin string, cmd string) []string {
+func getList(tmuxbin string, cmd string) []string {
 	_cmd := exec.Command(tmuxbin, cmd)
 	out, err := _cmd.Output()
 	if err == nil {
@@ -31,39 +31,39 @@ func get_list(tmuxbin string, cmd string) []string {
 	}
 }
 
-func get_sessions(tmuxbin string) []string {
-	return get_list(tmuxbin, "list-sessions")
+func getSessions(tmuxbin string) []string {
+	return getList(tmuxbin, "list-sessions")
 }
 
-func get_windows(tmuxbin string) []string {
-	return get_list(tmuxbin, "list-windows")
+func getWindows(tmuxbin string) []string {
+	return getList(tmuxbin, "list-windows")
 }
 
-func get_panes(tmuxbin string) []string {
-	return get_list(tmuxbin, "list-panes")
+func getPanes(tmuxbin string) []string {
+	return getList(tmuxbin, "list-panes")
 }
 
-func get_clients(tmuxbin string) []string {
-	return get_list(tmuxbin, "list-clients")
+func getClients(tmuxbin string) []string {
+	return getList(tmuxbin, "list-clients")
 }
 
 func index(c *gin.Context) {
-	tmux_path := c.Query("tmux_path")
+	tmuxPath := c.Query("tmux_path")
 
-	if tmux_path == "" {
-		tmux_path, _ = exec.LookPath("tmux")
+	if tmuxPath == "" {
+		tmuxPath, _ = exec.LookPath("tmux")
 	}
 
-	sessions := get_sessions(tmux_path)
-	windows := get_windows(tmux_path)
+	sessions := getSessions(tmuxPath)
+	windows := getWindows(tmuxPath)
 	fmt.Printf("windows: %v", windows)
 	println(len(windows))
-	panes := get_panes(tmux_path)
-	clients := get_clients(tmux_path)
+	panes := getPanes(tmuxPath)
+	clients := getClients(tmuxPath)
 
 	c.HTML(http.StatusOK, "index.html", gin.H{
 		"title":     "tmux control panel",
-		"tmux_path": tmux_path,
+		"tmux_path": tmuxPath,
 		"sessions":  sessions,
 		"windows":   windows,
 		"panes":     panes,
