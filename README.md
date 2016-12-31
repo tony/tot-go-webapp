@@ -23,6 +23,8 @@ Same golang web application for [*The Tao of tmux and Terminal Tricks*](https://
 
 ## Dependencies
 
+- [golang](https://golang.org/)
+- [tmuxp](https://tmuxp.git-pull.com)
 - [`entr(1)`](http://entrproject.org/).
 - [bower](https://bower.io/#install-bower), installed via [npm](https://nodejs.org/en/).
 
