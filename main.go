@@ -16,6 +16,7 @@ func main() {
 
 	router.GET("/", index)
 	router.GET("/index", index)
+	router.GET("/tmux_partial", tmuxPartial)
 
 	router.Run("localhost:8080")
 }
@@ -61,6 +62,24 @@ func getTmuxData(tmuxPath string) tmuxData {
 		getClients(tmuxPath),
 	}
 
+}
+
+func tmuxPartial(c *gin.Context) {
+	tmuxPath := c.Query("tmux_path")
+
+	if tmuxPath == "" {
+		tmuxPath, _ = exec.LookPath("tmux")
+	}
+
+	tmuxData := getTmuxData(tmuxPath)
+
+	c.HTML(http.StatusOK, "content.html", gin.H{
+		"tmux_path": tmuxPath,
+		"sessions":  tmuxData.sessions,
+		"windows":   tmuxData.windows,
+		"panes":     tmuxData.panes,
+		"clients":   tmuxData.clients,
+	})
 }
 
 func index(c *gin.Context) {
