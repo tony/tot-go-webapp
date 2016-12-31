@@ -70,14 +70,14 @@ func index(c *gin.Context) {
 		tmuxPath, _ = exec.LookPath("tmux")
 	}
 
-	tmux_data := getTmuxData(tmuxPath)
+	tmuxData := getTmuxData(tmuxPath)
 
 	c.HTML(http.StatusOK, "index.html", gin.H{
 		"title":     "tmux control panel",
 		"tmux_path": tmuxPath,
-		"sessions":  tmux_data.sessions,
-		"windows":   tmux_data.windows,
-		"panes":     tmux_data.panes,
-		"clients":   tmux_data.clients,
+		"sessions":  tmuxData.sessions,
+		"windows":   tmuxData.windows,
+		"panes":     tmuxData.panes,
+		"clients":   tmuxData.clients,
 	})
 }
