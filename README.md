@@ -13,6 +13,10 @@ Same golang web application for [*The Tao of tmux and Terminal Tricks*](https://
   * `make watch_run` launch server and restart on file change
 
     ![screenshot](resources/screenshot.png)
+  * `make lint` - [golint](https://github.com/golang/lint) 
+  * `make watchlint` relint on file change
+  * `make metalint` - [gometalinter](https://github.com/alecthomas/gometalinter) 
+  * `make watchmetalint` - gometalinter on file change
 
 * Load project with [tmuxp](https://tmuxp.git-pull.com) via `$ tmuxp load .` in
   the project directory. See [`.tmuxp.yaml`](.tmuxp.yaml)
