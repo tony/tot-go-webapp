@@ -13,6 +13,13 @@ build:
 runbuild:
 	go build ./...; ./go-samplesite
 
+lint:
+	golint
+
+metalint:
+	if command -v gometalinter > /dev/null; then echo ''; else go get -u github.com/alecthomas/gometalinter; fi
+	gometalinter ./...
+
 entr_warn:
 	@echo "----------------------------------------------------------"
 	@echo "     ! File watching functionality non-operational !      "
@@ -35,3 +42,9 @@ watch_build:
 
 watch_runbuild:
 	if command -v entr > /dev/null; then ${WATCH_FILES} | entr -rc $(MAKE) runbuild; else $(MAKE) runbuild entr_warn; fi
+
+watch_lint:
+	if command -v entr > /dev/null; then ${WATCH_FILES} | entr -rc $(MAKE) lint; else $(MAKE) lint entr_warn; fi
+
+watch_metalint:
+	if command -v entr > /dev/null; then ${WATCH_FILES} | entr -rc $(MAKE) metalint; else $(MAKE) metalint entr_warn; fi
