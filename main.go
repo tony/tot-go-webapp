@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 	"os/exec"
 	"strings"
@@ -55,8 +54,6 @@ func index(c *gin.Context) {
 
 	sessions := getSessions(tmuxPath)
 	windows := getWindows(tmuxPath)
-	fmt.Printf("windows: %v", windows)
-	println(len(windows))
 	panes := getPanes(tmuxPath)
 	clients := getClients(tmuxPath)
 
