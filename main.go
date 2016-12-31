@@ -26,9 +26,8 @@ func getList(tmuxbin string, cmd string) []string {
 	out, err := _cmd.Output()
 	if err == nil {
 		return strings.Split(strings.TrimSpace(string(out)), "\n")
-	} else {
-		return []string{}
 	}
+	return []string{}
 }
 
 func getSessions(tmuxbin string) []string {
