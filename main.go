@@ -30,6 +30,13 @@ func getList(tmuxPath string, cmd string) []string {
 	return []string{}
 }
 
+type tmuxData struct {
+	sessions []string
+	windows  []string
+	panes    []string
+	clients  []string
+}
+
 func getSessions(tmuxPath string) []string {
 	return getList(tmuxPath, "list-sessions")
 }
@@ -46,22 +53,13 @@ func getClients(tmuxPath string) []string {
 	return getList(tmuxPath, "list-clients")
 }
 
-type tmuxData struct {
-	sessions []string
-	windows  []string
-	panes    []string
-	clients  []string
-}
-
 func getTmuxData(tmuxPath string) tmuxData {
-
 	return tmuxData{
 		getSessions(tmuxPath),
 		getWindows(tmuxPath),
 		getPanes(tmuxPath),
 		getClients(tmuxPath),
 	}
-
 }
 
 func tmuxPartial(c *gin.Context) {
