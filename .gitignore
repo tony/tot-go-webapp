@@ -25,3 +25,6 @@ _testmain.go
 
 # bower
 resources/static/bower/
+
+# Apple
+.DS_Store
