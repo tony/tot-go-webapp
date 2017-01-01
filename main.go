@@ -8,19 +8,6 @@ import (
 	"gopkg.in/gin-gonic/gin.v1"
 )
 
-func main() {
-	router := gin.Default()
-
-	router.LoadHTMLGlob("resources/templates/*")
-	router.Static("/static", "resources/static")
-
-	router.GET("/", index)
-	router.GET("/index", index)
-	router.GET("/tmux_partial", tmuxPartial)
-
-	router.Run("localhost:8080")
-}
-
 func getList(tmuxPath string, cmd string) []string {
 	_cmd := exec.Command(tmuxPath, cmd)
 	out, err := _cmd.Output()
@@ -97,4 +84,17 @@ func index(c *gin.Context) {
 		"panes":     tmuxData.panes,
 		"clients":   tmuxData.clients,
 	})
+}
+
+func main() {
+	router := gin.Default()
+
+	router.LoadHTMLGlob("resources/templates/*")
+	router.Static("/static", "resources/static")
+
+	router.GET("/", index)
+	router.GET("/index", index)
+	router.GET("/tmux_partial", tmuxPartial)
+
+	router.Run("localhost:8080")
 }
